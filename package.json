@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "node-sass --include-path=./node_modules --output-style=compressed src/scss/style.scss src/assets/css/style.css",
+    "sass": "node-sass --include-path=./node_modules src/scss/style.scss src/assets/css/style.css",
     "watch:eleventy": "eleventy --serve",
     "watch:sass": "npm run sass -- --watch",
     "start": "npm-run-all sass --parallel watch:*",
-    "build": "eleventy"
+    "build": "npm run sass -- --output-style=compressed && eleventy"
   },
   "keywords": [],
   "author": "",
