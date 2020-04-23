@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+permalink: "blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+pagination:
+  alias: posts
+  data: collections.posts
+  size: 5
+---
+
+{% include "components/collection-header-posts.njk" %}
+
+<section id="content" class="py-5">
+    <div class="container">
+
+        {% if posts.length == 0 %}
+        <div class="card mb-5">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Uh-Oh. There's Nothing Here!</h2>
+                <p class="lead">It seems I have not published any blog posts yet... <em>Stay tuned for more exciting updates!</em></p>
+            </div>
+        </div>
+        {% endif %}
+
+        {% for post in posts %}
+        <article class="card mb-5">
+            <div class="card-body">
+                {% include "components/post-header.njk" %}
+
+                <p class="card-text">{{ post.data.excerpt | striptags }}</p>
+
+                <p class="card-text"><a href="{{ post.url | url }}" class="card-link stretched-link btn btn-outline-primary">Read this Blog Post <i class="fa fa-lg fa-fw fa-arrow-circle-right" aria-hidden="true"></i></a></p>
+            </div>
+        </article>
+        {% endfor %}
+
+        {% include "components/posts-pagination.njk" %}
+
+    </div>
+</section>

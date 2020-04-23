@@ -1,0 +1,28 @@
+{% if collections.posts.length > 0 %}
+<div id="PostsCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#PostsCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#PostsCarousel" data-slide-to="1"></li>
+        <li data-target="#PostsCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        {% for post in collections.posts | slice(3) | first %}
+        <div class="carousel-item {% if loop.first %}active{% endif %}">
+            <div class="text-center">
+                <h1 class="text-shadow text-white">{{ post.data.title }}</h1>
+                <p class="lead text-justify">{{ post.data.excerpt | striptags }}</p>
+                <a href="{{ post.url | url }}" class="btn btn-lg btn-outline-primary text-white stretched-link my-2">Read this Blog Post <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#PostsCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#PostsCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+{% endif %}

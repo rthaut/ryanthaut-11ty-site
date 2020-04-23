@@ -1,0 +1,48 @@
+{
+    "header": [
+        {
+            "url": "/projects/",
+            "title": "Projects",
+            "identifier": "projects",
+            "weight": 1,
+            "icon": "fa fa-tools"
+        },
+        {
+            "url": "/blog/",
+            "title": "Blog",
+            "identifier": "blog",
+            "weight": 2,
+            "icon": "fa fa-scroll"
+        },
+        {
+            "url": "/contact",
+            "title": "Contact",
+            "weight": 4,
+            "icon": "fa fa-bullhorn"
+        }
+    ],
+    "footer": [
+        {
+            "url": "/",
+            "title": "Home",
+            "weight": 0
+        },
+        {
+            "url": "/projects/",
+            "title": "Projects",
+            "identifier": "projects",
+            "weight": 1
+        },
+        {
+            "url": "/blog/",
+            "title": "Blog",
+            "identifier": "blog",
+            "weight": 2
+        },
+        {
+            "url": "/contact",
+            "title": "Contact",
+            "weight": 4
+        }
+    ]
+}

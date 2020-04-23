@@ -1,0 +1,31 @@
+{% if pagination and pagination.pages.length > 1 %}
+<nav class="mt-4">
+    <ul class="pagination justify-content-between">
+        {% if pagination.href.previous %}
+        <li class="page-item mr-auto">
+            <a class="page-link" href="{{ pagination.href.first | url }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Newer <span class="d-none d-sm-inline">Posts </span></a>
+        </li>
+        {% else %}
+        <li class="page-item mr-auto disabled">
+            <span class="page-link"><i class="fa fa-arrow-left" aria-hidden="true"></i> Newer <span class="d-none d-sm-inline">Posts </span></span>
+        </li>
+        {% endif %}
+
+        {% for p in pagination.pages %}
+        <li class="page-item mx-1 {% if page.url == pagination.hrefs[loop.index0] %}active{% endif %}">
+            <a class="page-link" href="{{ pagination.hrefs[loop.index0] | url }}" title="Page {{ loop.index }}">Page {{ loop.index }}</a>
+        </li>
+        {% endfor %}
+
+        {% if pagination.href.next %}
+        <li class="page-item ml-auto">
+            <a class="page-link" href="{{ pagination.href.next | url }}">Older <span class="d-none d-sm-inline">Posts </span><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+        </li>
+        {% else %}
+        <li class="page-item ml-auto disabled">
+            <span class="page-link">Older <span class="d-none d-sm-inline">Posts </span><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}

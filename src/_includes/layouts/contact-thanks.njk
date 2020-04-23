@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+---
+
+<section id="content" class="py-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <h2 class="card-title mb-3"><i class="fa fa-envelope"></i> Contact Me via Email</h2>
+                        <p class="lead mb-2">Email is still the best (albeit the least imaginative) way to get in touch with me.</p>
+                        <hr class="my-3" />
+
+                        <div class="alert alert-secondary">
+                            <div class="media">
+                                <i class="fa fa-check fa-3x fa-fw mr-3 align-self-center"></i>
+                                <p class="media-body mb-0"><strong>Your message has been sent successfully!</strong><br>Want to send another? <a href="{{ '/contact/' | url }}" class="alert-link">Go for it</a>, I guess.</p>
+                            </div>
+                        </div>
+
+                        <hr class="my-5 d-xl-none" />
+                    </div>
+
+                    <div id="socials" class="col-xl-6">
+                        {% include "components/contact-social.njk" %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

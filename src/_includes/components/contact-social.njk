@@ -1,0 +1,17 @@
+<h2 class="card-title mb-3"><i class="fa fa-binoculars "></i> Find Me on Social Media</h2>
+<p class="lead mb-2">These are my digital watering holes, if you are looking for a more <em>casual</em> encounter...</p>
+<hr class="my-3" />
+
+<dl>
+{% for social in socials | selectattr('featured') %}
+<dt class="h4"><i class="fab fa-{{ social.icon | default(social.name) | lower }} fa-lg fa-fw" aria-hidden="true"></i> {{ social.name }}: <a href="{{ social.url }}">{{ social.username }}</a></dt>
+<dd>{{ social.description | markdownify | safe }}</dd>
+{% endfor %}
+</dl>
+
+<dl class="mt-5">
+{% for social in socials | rejectattr('featured') %}
+<dt class="h5"><i class="fab fa-{{ social.icon | default(social.name) | lower }} fa-1x fa-fw" aria-hidden="true"></i> {{ social.name }}: <a href="{{ social.url }}">{{ social.username }}</a></dt>
+<dd class="small">{{ social.description | markdownify | safe }}</dd>
+{% endfor %}
+</dl>

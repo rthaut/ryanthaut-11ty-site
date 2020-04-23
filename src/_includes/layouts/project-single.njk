@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+---
+
+{% set breadcrumbs=true %}
+{% set intro=false %}
+{% include "components/collection-header-projects.njk" %}
+
+<section id="content" class="py-5">
+    <div class="container">
+
+        <article class="card">
+
+            <div class="card-body">
+                <header class="post-meta">
+                    <h1 class="card-title mb-3">{{ title }}</h1>
+                    <div class="container-fluid px-0">
+                        <div class="row no-gutters">
+                            {% if repository.url %}
+                            <div class="col-12 col-md-auto mr-4">
+                                <h5 class="text-medium">
+                                    <i class="{{ repository.icon | default('fa fa-code') }} fa-fw mr-1 text-primary" aria-hidden="true"></i>
+                                    View this project on <a href="{{ repository.url }}">{{ repository.type }}</a>
+                                </h5>
+                            </div>
+                            {% endif %}
+                            {% if site %}
+                            <div class="col-12 col-md-auto">
+                                <h5 class="text-medium">
+                                    <i class="fa fa-external-link-alt fa-fw mr-1 text-primary" aria-hidden="true"></i>
+                                    View the <a href="{{ website }}">Official Site</a>
+                                </h5>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </header>
+
+                <section id="excerpt" class="post-excerpt lead">{{ excerpt | safe }}</section>
+
+                {% if image %}
+                {% set thumb = image.thumb | default(image.full) %}
+                <a href="{{ thumb }}" title="{{ image.title }}" data-popup="image"><img class="img-fluid img-thumbnail rounded mb-4" alt="{{ image.title }}" src="{{ image.full }}" /></a>
+                {% endif %}
+
+                <section class="post-content">{{ content | safe }}</section>
+            </div>
+
+            {% set type = "project" %}
+            {% include "components/single-footer.njk" %}
+
+            {% if site.disqus_shortname and comments %}
+            <div class="card-body">
+                {% include "components/single-disqus.njk" %}
+            </div>
+            {% endif %}
+
+        </article>
+
+    </div>
+</section>

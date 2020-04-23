@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Twitter",
+        "icon": "twitter-square",
+        "username": "@rthaut",
+        "url": "https://www.twitter.com/rthaut",
+        "featured": true,
+        "description": "Twitter is more like a way for you to to ~~stalk~~ follow me than to actually communicate with me, but maybe that is your goal..."
+    },
+    {
+        "name": "GitHub",
+        "icon": "github-square",
+        "username": "rthaut",
+        "url": "https://www.github.com/rthaut",
+        "featured": true,
+        "description": "Most of what I work on (at least professionally) is proprietary, but some of my more recent side projects can be found on GitHub."
+    },
+    {
+        "name": "LinkedIn",
+        "icon": "linkedin",
+        "username": "Ryan Thaut",
+        "url": "https://www.linkedin.com/in/rthaut",
+        "featured": true,
+        "description": "Just FYI: I probably won't \"add you to my professional network\" unless you actually write your own message in the request."
+    },
+    {
+        "name": "DeviantArt",
+        "icon": "deviantart",
+        "username": "rthaut",
+        "url": "https://rthaut.deviantart.com/",
+        "featured": false,
+        "description": "I'm mostly inactive on DeviantArt these days, except for my [deviantART Filter project](projects/deviantart-filter/), but most of portfolio lives on here."
+    },
+    {
+        "name": "Dribbble",
+        "icon": "dribbble",
+        "username": "rthaut",
+        "url": "https://dribbble.com/rthaut",
+        "featured": false,
+        "description": "Another community in which I have unfortunately been scarce of late. Hopefully I'll have some design work to start posting there in the future."
+    }
+]

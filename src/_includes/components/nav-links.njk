@@ -1,0 +1,32 @@
+{% if menu %}{% for item in menu %}
+    {% set class = nil %}
+    {% if page.url == item.url %}
+        {% set class = 'active' %}
+    {% elif item.url != '/' and item.url in page.url %}
+        {% set class = 'active parent' %}
+    {% endif %}
+    <li class="nav-item {% if item.children %}dropdown{% endif %} d-flex align-items-center">
+        {% if item.children %}
+        <a class="nav-link text-center dropdown-toggle {{ class }}" href="#" title="{{ item.title }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% if item.icon %}<i class="{{ item.icon }} fa-lg fa-fw" aria-hidden="true"></i>{% endif %}
+            <span class="d-block">{{ item.title }}</span>
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{ item.url | url }}" title="{{ item.title }}">{{ item.title }}</a>
+            <div class="dropdown-divider"></div>
+            {% for item in item.children %}
+                {% set class = nil %}
+                {% if page.url == item.url %}
+                    {% set class = 'active' %}
+                {% endif %}
+                <a class="dropdown-item {{ class }}" href="{{ item.url | url }}" title="{{ item.title }}">{{ item.title }}</a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <a class="nav-link text-center {{ class }}" href="{{ item.url | url }}" title="{{ item.title }}">
+            {% if item.icon %}<i class="{{ item.icon }} fa-lg fa-fw" aria-hidden="true"></i>{% endif %}
+            <span class="d-block">{{ item.title }}</span>
+        </a>
+        {% endif %}
+    </li>
+{% endfor %}{% endif %}

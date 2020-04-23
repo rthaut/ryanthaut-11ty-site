@@ -1,0 +1,4 @@
+<footer class="card-footer bg-medium text-light border-0">
+    <h5>Have feedback on this {{ type | default("post") }}?</h5>
+    <h6><a href="{{ '/contact/' | url }}" class="text-white">Let me know directly</a>{% if site.disqus_shortname and comments %} or leave a comment below{% endif %}</h6>
+</footer>

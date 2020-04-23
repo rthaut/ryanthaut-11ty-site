@@ -1,0 +1,4 @@
+{
+    "layout": "layouts/project-single.njk",
+    "permalink": "projects/{{ title | slugify }}/index.html"
+}

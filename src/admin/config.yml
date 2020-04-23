@@ -1,0 +1,136 @@
+backend:
+  name: git-gateway
+  branch: master
+
+local_backend: true
+
+# Uncomment below to enable drafts
+# publish_mode: editorial_workflow
+
+media_folder: "src/assets/img" # Media files will be stored in the repo in this folder
+public_folder: "/assets/img" # The src attribute for uploaded media will begin with this path
+
+collections:
+  # Pages
+  - name: "pages"
+    label: "Page"
+    folder: "src/pages"
+    create: false
+    slug: "{{slug}}"
+    fields:
+      - label: "Layout"
+        name: "layout"
+        widget: "string"
+        required: false
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Permalink"
+        name: "permalink"
+        widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+  # Posts
+  - name: "blog"
+    label: "Post"
+    folder: "/src/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+      - label: "Excerpt"
+        name: "excerpt"
+        widget: "text"
+      - label: "Categories"
+        name: "categories"
+        widget: "list"
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+  # Projects
+  - name: "projects"
+    label: "Project"
+    folder: "/src/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Excerpt"
+        name: "excerpt"
+        widget: "text"
+        required: false
+      - label: "Featured"
+        name: "featured"
+        widget: "boolean"
+      - label: "Comments"
+        name: "comments"
+        widget: "boolean"
+      - label: "Weight"
+        name: "weight"
+        widget: "number"
+      - label: "Website"
+        name: "website"
+        widget: "string"
+        required: false
+      - label: "Repository"
+        name: "repository"
+        widget: "object"
+        collapsed: true
+        fields:
+          - label: "Type"
+            name: "type"
+            widget: "string"
+          - label: "URL"
+            name: "url"
+            widget: "string"
+          - label: "Icon"
+            name: "icon"
+            widget: "string"
+      - label: "Image"
+        name: "image"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields: 
+          - label: "Full"
+            name: "full"
+            widget: "string"
+          - label: "Thumnail"
+            name: "thumb"
+            widget: "string"
+          - label: "Title"
+            name: "title"
+            widget: "string"
+      - label: "Links"
+        name: "links"
+        widget: "list"
+        collapsed: true
+        fields:
+          - label: "URL"
+            name: "url"
+            widget: "string"
+          - label: "Title"
+            name: "title"
+            widget: "string"
+          - label: "Icon"
+            name: "icon"
+            required: false
+            widget: "string"
+          - label: "Class"
+            name: "class"
+            required: false
+            widget: "string"
+      - label: "Body"
+        name: "body"
+        widget: "markdown"

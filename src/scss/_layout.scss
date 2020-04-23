@@ -1,0 +1,60 @@
+html {
+    background: $body-bg;
+    border-top: 4px solid darken(theme-color("primary"), 10);
+    border-bottom: 4px solid darken(theme-color("primary"), 10);
+    overflow-x: hidden;
+    width: 100% !important;
+}
+
+body {
+    background: $body-bg url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAMklEQVQImTXKsQ0AIAwDsP7/I6KIAaUCwgdhymzH3E8Jqq2jBBVZ1CgqQXVchcUzLJ4f4rE7c1yqVBMAAAAASUVORK5CYII=) repeat top;
+    border-top: 1px solid lighten(theme-color("primary"), 5);
+    border-bottom: 1px solid lighten(theme-color("primary"), 5);
+    overflow-x: hidden;
+    width: 100% !important;
+}
+
+#header.floating {
+	background-color: transparent !important;
+	position: absolute;
+	top: 5px;   // accounts for the top borders from html + body
+    left: 0;
+    right: 0;
+	z-index: 2;
+}
+
+#hero {
+    position: relative;
+    height: 100vh;
+
+    @include media-breakpoint-down(xs) {
+        height: 75vh;
+    }
+
+    .carousel-inner {
+        // 15% is the width of the previous/next controls,
+        // and 30px (plus 1rem for the bottom margin) is the height of the indicators
+        padding: 0 15% calc(30px + 1rem);
+    }
+
+    .row.h-100 {
+        padding-top: 150px;
+        padding-bottom: 150px;
+    }
+
+    #particles {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    #contact {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+    }
+}

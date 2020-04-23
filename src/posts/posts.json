@@ -1,0 +1,5 @@
+{
+    "layout": "layouts/blog-single.njk",
+    "permalink": "blog/{{ page.date | date: 'YYYY/MM/DD' }}/{{ title | slugify }}/index.html",
+    "comments": true
+}

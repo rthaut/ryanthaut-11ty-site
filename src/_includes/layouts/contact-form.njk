@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+---
+
+<section id="content" class="py-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <h2 class="card-title mb-3"><i class="fa fa-envelope"></i> Contact Me via Email</h2>
+                        <p class="lead mb-2">Email is still the best (albeit the least imaginative) way to get in touch with me.</p>
+                        <hr class="my-3" />
+
+                        <form method="POST" name="contact" class="needs-validation" action="/contact/thanks/" netlify-honeypot="gotcha" data-netlify="true" novalidate>
+                            <div class="form-group hidden">
+                                <label for="gotcha" class="form-control-label">Gotcha</label>
+                                <input type="text" name="gotcha" class="form-control" id="gotcha" />
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="form-control-label">Your Name</label>
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Dr. Emmett Brown" required />
+                                <span class="invalid-feedback">Everyone has a name (or at least a symbol); what's yours?</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-control-label">Your Email</label>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="one.twenty-one@gigawatts.com" required />
+                                <span class="invalid-feedback">Email correspondence is only effective with an email address for replies.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" class="form-control-label">Subject</label>
+                                <input type="text" name="subject" class="form-control" id="subject" placeholder="RE: Great Scott" required />
+                                <span class="invalid-feedback">I respond better when I know what we're talking about.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-control-label">Message</label>
+                                <textarea name="message" class="form-control" id="message" placeholder="The way I see it, if you're gonna build a time machine into a car, why not do it with some style?!" rows="8" required></textarea>
+                                <span class="invalid-feedback">If you aren't going to put something here, there really isn't any point to this...</span>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-auto mx-auto mx-md-0 mt-3">
+                                    <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-paper-plane fa-lg fa-fw" aria-hidden="true"></i> Send Email</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <hr class="my-5 d-xl-none" />
+                    </div>
+
+                    <div id="socials" class="col-xl-6">
+                        {% include "components/contact-social.njk" %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

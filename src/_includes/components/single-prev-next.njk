@@ -1,0 +1,25 @@
+{% if siblings.prev.url or siblings.next.url %}
+<nav class="mt-4">
+    <ul class="pagination justify-content-between">
+        {% if siblings.prev.url %}
+        <li class="page-item w-50 mr-1">
+            <a class="page-link text-left text-truncate" href="{{ siblings.prev.url | url }}"><i class="fa fa-arrow-left" aria-hidden="true"></i> <strong>Prev<span class="d-none d-sm-inline">ious</span> Post</strong><br/><span class="">{{ siblings.prev.data.title }}</span></a>
+        </li>
+        {% else %}
+        <li class="page-item w-50 mr-1 disabled">
+            <span class="page-link text-left"><i class="fa fa-arrow-left" aria-hidden="true"></i> <strong>Prev<span class="d-none d-sm-inline">ious</span> Post</strong><br/><em class="d-none d-md-inline">There's nothing before this</em><em class="d-inline d-md-none">No Older Posts</em></span>
+        </li>
+        {% endif %}
+
+        {% if siblings.next.url %}
+        <li class="page-item w-50 ml-1">
+            <a class="page-link text-right text-truncate" href="{{ siblings.next.url | url }}"><strong>Next Post</strong> <i class="fa fa-arrow-right" aria-hidden="true"></i><br/><span class="">{{ siblings.next.data.title }}</span></a>
+        </li>
+        {% else %}
+        <li class="page-item w-50 ml-1 disabled">
+            <span class="page-link text-right"><strong>Next Post</strong> <i class="fa fa-arrow-right" aria-hidden="true"></i><br/><em class="d-none d-md-inline">There's nothing after this (yet!)</em><em class="d-inline d-md-none">No Newer Posts</em></span>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}

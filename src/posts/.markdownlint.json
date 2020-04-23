@@ -1,0 +1,9 @@
+{
+  "default": true,
+  "first-header-h1": {
+    "level": 2
+  },
+  "line-length": false,
+  "no-inline-html": false,
+  "no-trailing-punctuation": false
+}

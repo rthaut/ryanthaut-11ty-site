@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include "components/site-head.njk" %}
+    </head>
+
+    <body id="top">
+        <a class="sr-only sr-only-focusable" href="#content">Skip to content</a>
+        {% include "components/site-header.njk" %}
+        {{ layoutContent | safe }}
+        {% include "components/site-footer.njk" %}
+        {% include "components/site-scripts.njk" %}
+    </body>
+
+</html>

@@ -1,0 +1,30 @@
+// === Text Utility Classes ===
+.text-shadow {
+    text-shadow: 0 0 2px rgba($black, 0.5);
+}
+
+.hidden {
+    visibility: hidden;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+// === Border Utility Classes ===
+@for $i from 1 through 5 {
+    @each $style in solid, dashed {
+        .b-#{$i}-#{$style} {
+            border: #{$i}px #{$style};
+        }
+    }
+}
+
+
+// === Animation Utility Classes ===
+@for $i from 0 through 16 {
+    .delay-#{$i * 250}ms {
+        -webkit-animation-delay: #{$i * 0.25}s;
+        animation-delay: #{$i * 0.25}s;
+    }
+}

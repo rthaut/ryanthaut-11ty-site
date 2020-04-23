@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+---
+
+{% include "components/collection-header-posts.njk" %}
+
+<section id="content" class="py-5">
+    <div class="container">
+
+        <article class="card">
+
+            <div class="card-body">
+                {% include "components/post-header-single.njk" %}
+
+                <section class="post-content">{{ layoutContent | safe }}</section>
+            </div>
+
+            {% set type = "post" %}
+            {% include "components/single-footer.njk" %}
+
+            {% if site.disqus_shortname and comments %}
+            <div class="card-body">
+                {% include "components/single-disqus.njk" %}
+            </div>
+            {% endif %}
+
+        </article>
+
+        {% include "components/single-prev-next.njk" %}
+
+    </div>
+</section>

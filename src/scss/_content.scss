@@ -1,0 +1,131 @@
+@include media-breakpoint-down(xs) {
+    h1, .h1 { font-size: 2.0rem; }
+    h2, .h2 { font-size: 1.8rem; }
+    h3, .h3 { font-size: 1.6rem; }
+    h4, .h4 { font-size: 1.4rem; }
+    h5, .h5 { font-size: 1.2rem; }
+    h6, .h6 { font-size: 1.0rem; }
+}
+
+.site-header-logo {
+    color: theme-color("light");
+    font-family: 'Roboto Slab', serif;
+
+    &.active,
+    &:active,
+    &:focus,
+    &:hover {
+        color: theme-color("light") !important;
+    }
+
+    h1, h2 {
+        border: 0;
+        text-shadow: 0 1px 3px $black;
+        margin: 0;
+    }
+
+    h1 {
+        border-bottom: 2px solid theme-color("primary");
+        font-size: 3.8rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    @include media-breakpoint-down(xs) {
+        h1 {
+            font-size: 2.8125rem;
+        }
+
+        h2 {
+            font-size: 0.938rem;
+        }
+    }
+}
+
+.site-header,
+.site-footer {
+    a.nav-link {
+        color: theme-color("light");
+
+        &.active,
+        &:active {
+            color: theme-color("primary");
+        }
+
+        &:focus,
+        &:hover {
+            color: $white;
+        }
+    }
+}
+
+.card a {
+    &.stretched-link {
+        &::after {
+            @include border-radius($card-border-radius);
+        }
+
+        &:hover::after {
+            border: 1px solid $link-hover-color;
+        }
+    }
+}
+
+.post-meta {
+    border-bottom: 1px solid theme-color("light");
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.post-excerpt {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid theme-color("light");
+    border-left-color: theme-color("primary");
+    border-left-width: .25rem;
+    @include border-radius;
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.bg-medium a.text-light {
+    &:active,
+    &:focus,
+    &:hover {
+        color: $white !important;
+    }
+}
+
+$rss: $orange;
+.btn-rss {
+    @include button-variant($rss, $rss);
+}
+.btn-outline-rss {
+    @include button-outline-variant($rss, $white);
+}
+
+// === Background Gradient Styles ===
+@each $color, $value in $theme-colors {
+    .bg-#{$color} {
+        &.gradient-horizontal {
+            @include gradient-directional(lighten($value, 10%), $value, 90deg);
+        }
+
+        &.gradient-vertical {
+            @include gradient-directional(lighten($value, 10%), $value, 0deg);
+        }
+
+        &.gradient-linear {
+            @include gradient-directional(lighten($value, 10%), $value, 45deg);
+        }
+
+        &.gradient-radial {
+            @include gradient-radial(lighten($value, 10%), $value);
+        }
+    }
+}

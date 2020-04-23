@@ -1,0 +1,36 @@
+<div class="card flex-fill mx-2 mt-3">
+
+    {% if project.data.image %}
+    <img class="card-img-top" alt="{{ project.data.image.title }}" src="{{ project.data.image.full }}" />
+    {% endif %}
+
+    <div class="card-body">
+        <header class="post-meta">
+            <h3 class="card-title">{% if project.data.featured %}<a href="{{ project.url | url }}">{% endif %}{{ project.data.title }}{% if project.data.featured %}</a>{% endif %}</h3>
+        </header>
+
+        <p class="card-text">{{ project.data.excerpt | default(project.templateContent) | safe }}</p>
+
+        {% if project.data.featured %}
+        <p class="card-text"><a href="{{ project.url | url }}" class="card-link stretched-link btn btn-outline-primary">View this Project <i class="fa fa-lg fa-fw fa-arrow-circle-right" aria-hidden="true"></i></a></p>
+        {% endif %}
+    </div>
+
+    {% if not project.data.featured and (project.data.repository or project.data.links) %}
+    <div class="list-group list-group-flush">
+        {% if project.data.repository %}
+        <a href="{{ project.data.repository.url }}" class="list-group-item list-group-item-action">
+            <i class="{{ project.data.repository.icon | default('fa fa-code') }}" aria-hidden="true"></i>
+            View {{ project.data.repository.type }} Repository
+        </a>
+        {% endif %}
+        {% for link in project.data.links %}
+        <a href="{{ link.url }}" class="list-group-item list-group-item-action">
+            {% if link.icon %}<i class="fa fa-{{ link.icon }}" aria-hidden="true"></i>{% endif %}
+            {{ link.title }}
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>

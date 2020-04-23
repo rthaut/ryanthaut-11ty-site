@@ -1,0 +1,82 @@
+<!-- Google Analytics -->
+<script>
+    window.ga = window.ga || function () {
+        (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = + new Date;
+    ga('create', '{{ site.google_analytics }}', 'auto');
+    ga('set', 'transport', 'beacon');
+    ga('send', 'pageview')
+</script>
+<script async="async" src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+    window.jQuery || document.write('<script src="/assets/js/vendor/jquery-3.3.1.min.js"><\/script>')
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha256-P93G0oq6PBPWTP1IR8Mz/0jHHUpaWL0aBJTKauisG7Q=" crossorigin="anonymous"></script>
+
+<script src="/assets/js/scripts.js"></script>
+{% if page.url == '/' %}
+    <script src="/assets/js/vendor/particles.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            particlesJS.load('particles', '/assets/js/particles-config.json');
+            $('#particles').css('height', 'calc(' + $('#hero').css('height') + ' - ' + $('#contact').outerHeight() + 'px)');
+        }, false);
+    </script>
+{% endif %}
+
+{% if '/blog/' in page.url %}
+    <script type="text/javascript">
+        const adjectives = ["{{ post_count_adjectives | join('", "') | safe }}"];
+
+        function setPostCountAdjective() {
+            const $el = $('#post-count-adjective');
+            if ($el.length) {
+                // get a random adjective
+                const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+
+                let article = 'a';
+                if ([
+                    'a',
+                    'e',
+                    'i',
+                    'o',
+                    'u',
+                    'x'
+                ].includes(adjective[0])) {
+                    article = 'an';
+                }
+
+                $el.html(`${article} <em>${adjective}</em>`);
+                window.setTimeout(setPostCountAdjective, 10 * 1000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            setPostCountAdjective();
+        }, false);
+    </script>
+{% endif %}
+
+<!-- Netlify Identity redirection after login -->
+<script>
+    if (window.netlifyIdentity) {
+        window
+            .netlifyIdentity
+            .on("init", user => {
+                if (!user) {
+                    window
+                        .netlifyIdentity
+                        .on("login", () => {
+                            document.location.href = "/admin/";
+                        });
+                }
+            });
+    }
+</script>

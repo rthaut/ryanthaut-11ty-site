@@ -1,0 +1,20 @@
+<div class="jumbotron-fluid bg-medium text-light py-3 py-sm-4">
+    <div class="container">
+
+        {% if breadcrumbs %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-dark mb-0">
+                <li class="breadcrumb-item"><a class="text-light" href="{{ '/projects/' | url }}">Projects</a></li>
+                <li class="breadcrumb-item active text-medium" aria-current="page">{{ title }}</li>
+            </ol>
+        </nav>
+        {% endif %}
+
+        {% if intro %}
+        <h3 class="text-shadow">{{ title }}</h3>
+        <p class="lead">These are my most polished and/or active projects</p>
+        <p></p>You can find all of my open source projects (including the ones listed below) on <a class="text-white" href="https://github.com/rthaut?tab=repositories">GitHub</a></p>
+        {% endif %}
+
+    </div>
+</div>

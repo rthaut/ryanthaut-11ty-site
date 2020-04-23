@@ -1,0 +1,12 @@
+<div class="jumbotron-fluid bg-medium text-light py-3 py-sm-4">
+    <div class="container">
+        <h3 class="text-shadow">{{ site.description }}</h3>
+        <p class="lead">A collection of thoughts that seemed worth the time to put in writing</p>
+        {% if collections.posts.length > 0 %}
+        <div class="d-flex flex-column flex-md-row align-items-start">
+            <span class="h5 mb-3 mb-md-0 mr-3 align-self-md-center">(With <span id="post-count-adjective"></span> <strong>{{ collections.posts.length }}</strong> posts covering <strong>{{ collections.tags.length }}</strong> topics)</span>
+            <a class="btn btn-outline-rss text-white" href="{{ '/feed.xml' | url }}"><i class="fa fa-rss fa-lg align-middle mr-2" aria-hidden="true"></i>RSS Feed</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
