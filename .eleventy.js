@@ -79,7 +79,18 @@ module.exports = function (config) {
     });
     config.setLibrary('md', md
         .use(require('markdown-it-attrs'))
-        .use(require('markdown-it-container'))
+        .use(require('markdown-it-container'), '', {
+            validate: () => true,
+            render: (tokens, idx) => {
+                if (tokens[idx].nesting === 1) {
+                    const classList = tokens[idx].info.trim()
+                    return `<div ${classList && `class="${classList}"`}>`;
+                } else {
+                    return `</div>`;
+                }
+            }
+        })
+        .use(require('markdown-it-fontawesome'))
     );
 
 
