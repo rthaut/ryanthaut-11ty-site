@@ -225,7 +225,7 @@ I adopted the practice of putting links to previous and next blog posts at the b
 
 In the template file(s) you could get the entire collection, then find the one you are currently working with (by comparing IDs/slugs), and then move to the items before and after that in the collection. But there's a better way of handling it, since you build out the collection in your configuration file anyway:
 
-``` js{5,10}
+``` js
 config.addCollection('posts', collection => collection
     .getFilteredByGlob('./src/posts/**/*')
     // ... (do things like filter and/or reverse here if you want)
@@ -243,6 +243,7 @@ That simply adds the previous and next items from the collection into a `sibling
 
 **_// TODO: this sample template code gets processed... Eleventy strips out the template tags but leaves the HTML, whereas Jekyll removes all of it entirely...._**
 
+{% raw %}
 ``` js
 {% if siblings.prev.url or siblings.next.url %}
 <nav>
@@ -265,6 +266,7 @@ That simply adds the previous and next items from the collection into a `sibling
 </nav>
 {% endif %}
 ```
+{% endraw %}
 
 ## What I Would Consider Doing Differently
 
