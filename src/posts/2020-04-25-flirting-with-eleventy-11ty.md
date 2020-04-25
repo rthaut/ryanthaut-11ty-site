@@ -1,0 +1,282 @@
+---
+title: Flirting with Eleventy (11ty)
+date: 2020-04-25T21:45:00.000Z
+excerpt: A detailed post (with code examples) on making a clone of my personal
+  site that uses Eleventy instead of Jekyll.
+categories:
+  - programming
+tags:
+  - web design
+  - web development
+  - blog
+  - Jekyll
+  - Eleventy
+  - JavaScript
+---
+
+Well, this is awkward. Despite [migrating from WordPress to Jekyll](/blog/2017/07/02/migrating-to-jekyll "Blog Post: Migrating to Jekyll") only a couple of years ago, I am about 99% finished making a version that uses [Eleventy (a.k.a. 11ty)](https://www.11ty.dev/ "Official Eleventy Site") instead.
+
+I know what you're thinking:
+
+* "You're late to the game! Eleventy isn't even the new kid on the block anymore."
+* "So what? The end result is the same, and doesn't change how you write content."
+* "Who even are you? Why am I here?"
+
+To that I say: That's fair... but I had already written this post before you started reading it.
+
+Also, this is a long post. Better bloggers/teachers probably would have split this into multiple posts covering more concise topics, but not me. **Everything I cover here is in my** [**`ryanthaut-jekyll-site` repository**](https://github.com/rthaut/ryanthaut-jekyll-site/ "ryanthaut-jekyll-site GitHub Repository") **if you'd rather just browse through that instead.**
+
+## Why Leave Jekyll? And Why Eleventy?
+
+I'm not 100% certain this will be a permanent switch. I seem to have made an exact replica of my Jekyll-based site, but I may have missed something small. More concerning, though, is the thought that at some point in the future I may want to add or change something about my site that is possible with Jekyll that is not possible with Eleventy -- or is at least notably more difficult with Eleventy than with Jekyll. That seems like a weak excuse not to make the jump, but Jekyll is the more mature system, and thus has more support. plugins, and community knowledge than Eleventy (at least now).
+
+That said, Jekyll's dependency upon Ruby has been a gripe of mine since I first switched to it. I simply don't use Ruby for anything else at all, and it using Ruby on Windows is known to be a less than ideal situation. The fact that Eleventy uses JavaScript is perhaps its most illustrious feature, considering just how popular JavaScript development is these days.
+
+Eleventy was also created intentionally as an alternative to Jekyll, so making the switch can be quite simple. Don't get me wrong, I **_totally_** complicated it, but that's just how I roll, for better or for worse.
+
+## What I Did
+
+Eleventy allows you more flexibility than Jekyll in a few key areas, like template engines, directory structure, and the build process. While I could have probably left everything as it was for Jekyll and configured my `.eleventy.js` file accordingly, I wanted to try some Eleventy features out, so this is what I actually did.
+
+### Some Restructuring
+
+I started off by moving everything (minus tool/utility configuration files) into a new `src/` directory at the project root, and then I moved my pages into a new `src/pages/` directory (alongside my `posts` and `projects` directories for those respective collections). I reorganized my templates and partials into `src/_includes/layouts/` and `src/_includes/components/`, respectively, so that Eleventy picks them up.
+
+The most notably restructuring change was actually my SCSS files. Jekyll requires your `style.scss` file to be setup in a certain way, but Eleventy lets you use any tool you want for building. So I moved my `style.scss` file into a `src/scss/` directory alongside my other SCSS files.
+
+### Build Processes
+
+#### SASS/SCSS
+
+Eleventy doesn't have any built-in functionality for SASS/SCSS files, aside from copying them, which is totally fine. I used `node-sass` in my `package.json` to compile SCSS:
+
+`node-sass --include-path=./node_modules src/scss/style.scss src/assets/css/style.css`
+
+Then I just configured Eleventy (in `.eleventy.js`) to watch and copy my entire assets directory:
+
+``` js
+// don't use .gitignore (allows compiling sass to css into a monitored folder WITHOUT committing it to repo)
+config.setUseGitIgnore(false);
+
+config.addPassthroughCopy('src/assets');`
+```
+
+I also added the `src/assets/css/` directory to my `.gitignore` file, since it doesn't make sense to commit both versions. That's why I had to use `setUseGitIgnore(false)`, as I still wanted Eleventy to monitor and copy that directory. You could take it a step further and add `src/scss/` to your [`.eleventyignore` file](https://www.11ty.dev/docs/ignores/ "Eleventy Ignore Files Documentation Page"), since Eleventy doesn't care about those files.
+
+#### BrowserSync
+
+The only other "build"-related thing I did was to configure [BrowserSync](https://www.browsersync.io/ "BrowserSync Official Website") to render my 404 page for missing files _without_ doing a redirect:
+
+```js
+// Configure BrowserSync to serve the 404 page for missing files
+config.setBrowserSyncConfig({
+    callbacks: {
+        ready: (_err, browserSync) => {
+            const content_404 = require('fs').readFileSync('dist/404.html');
+
+            browserSync.addMiddleware('*', (_req, res) => {
+                // render the 404 content instead of redirecting
+                res.write(content_404);
+                res.end();
+            });
+        }
+    }
+});
+```
+
+### Switching from Liquid to Nunjucks
+
+**This is where I complicated things.** In hindsight it may not have been worthwhile, but I decided to switch to [Nunjucks](https://mozilla.github.io/nunjucks/ "Nunjucks Official Website") for my template engine. Honestly, because the data structure is a bit different between Jekyll and Eleventy (see [Paul Robert Lloyd](https://paulrobertlloyd.com/ "Paul Robert Lloyd's Personal Website")'s post ["Turn Jekyll up to Eleventy"](https://24ways.org/2018/turn-jekyll-up-to-eleventy/ 'Post "Turn Jekyll up to Eleventy" on 24 ways')), you **have to** make some changes to your templates anyway.
+
+#### Missing Nunjucks Filters
+
+Here are the missing filters I added to my `.eleventy.js` file (most are from Paul's post):
+
+##### markdownify
+
+``` js
+// configure markdown-it (and set it as your markdown processor for consistency)
+const md = require('markdown-it')({
+    html: true,
+    breaks: true,
+    linkify: true,
+});
+
+config.setLibrary('md', md);
+
+// ...
+
+config.addFilter('markdownify', str => md.render(str));
+```
+
+##### jsonify
+
+``` js
+config.addFilter('jsonify', variable => JSON.stringify(variable));
+```
+
+##### slugify
+
+``` js
+config.addFilter('slugify', str => require('slugify')(str, {
+    lower: true,
+    replacement: '-',
+    remove: /[*+~.·,()''`´%!?¿:@]/g
+}));
+```
+
+##### where (uses lodash)
+
+``` js
+config.addFilter('where', (array, key, value) => require('lodash').filter(array, [key, value]));
+```
+
+##### date (uses moment.js)
+
+``` js
+config.addFilter('date', (date, format = '') => require('moment')(date).format(format));
+```
+
+### Plugins
+
+Eleventy may be much younger than Jekyll, but it already has a decent selection of plugins available.
+
+These are the ones I added:
+
+* Syntax Highlighting: [`eleventy-plugin-syntaxhighlight`](https://www.11ty.dev/docs/plugins/syntaxhighlight/)
+  * I also converted my CSS for the `Rouge` markup that Jekyll used to the `PrismJS` markup
+* Navigation Menu Configuration: [`eleventy-navigation`](https://www.11ty.dev/docs/plugins/navigation/)
+* RSS Feeds: [`eleventy-plugin-rss`](https://www.11ty.dev/docs/plugins/rss/)
+
+### The Final Bits and Pieces
+
+After restructuring my project files and folders, tweaking the build process, updating my templates, and adding some plugins, there was just a handful of missing pieces.
+
+#### A Collection of All Post Tags
+
+Jekyll has a native collection of all tags on the site (in `site.tags`), which I simply ran through the `length` filter to display a tag count at the top of blog pages. Eleventy doesn't provide that collection natively, but it is easy to make your own tags collection:
+
+``` js
+config.addCollection('tags', collection => {
+    let tags = new Set();
+
+    collection.getAll().forEach(item => {
+        if ('tags' in item.data) {
+            for (const tag of item.data.tags) {
+                tags.add(tag);
+            }
+        }
+    });
+
+    return [...tags];
+});
+```
+
+#### Markdown Configuration
+
+I had configured Jekyll to use [kramdown](https://kramdown.gettalong.org/ "kramdown Official Site") for Markdown parsing, but since that is a Ruby library, it didn't make sense to try to use it with Eleventy. Instead, I stuck with Eleventy's recommended parser, [markdown-it](https://github.com/markdown-it/markdown-it "markdown-it GitHub Page"), but that meant there were some gaps to fill.
+
+I needed to be able to add HTML classes to a single line (like `.lead` to paragraphs), and I needed to add wrapper classes to blocks of content (like `.table .table-striped` around tables, as well as `.row` & `.col-*` for responsive columns).
+
+To accomplish that, I configured `markdown-it` to use the [`markdown-it-attrs`](https://github.com/arve0/markdown-it-attrs) (for single line classes) and [`markdown-it-container`](https://github.com/markdown-it/markdown-it-container) (for block/wrapper classes) plugins. I added a container configuration that lets me list one or more classes and applies them to a `div` that wraps the fenced content:
+
+``` js
+// Markdown Configuration
+const md = require('markdown-it')({
+    html: true,
+    breaks: true,
+    linkify: true,
+});
+config.setLibrary('md', md
+    .use(require('markdown-it-attrs'))
+    .use(require('markdown-it-container'), '', {
+        validate: () => true,
+        render: (tokens, idx) => {
+            if (tokens[idx].nesting === 1) {
+                const classList = tokens[idx].info.trim()
+                return `<div ${classList && `class="${classList}"`}>`;
+            } else {
+                return `</div>`;
+            }
+        }
+    })
+);
+```
+
+And here's how I use them in Markdown:
+
+``` md
+This `<p>` tag will have the "lead" class added to it.{ .lead }
+
+:::: row
+::: col
+## Column 1
+The corresponding ".row" and ".col-md" classes need to be in your site's CSS; this markup just adds the correponding `<div>`s with those classes.
+:::
+::: col-md
+## Column 2
+The corresponding ".row" and ".col-md" classes need to be in your site's CSS; this markup just adds the correponding `<div>`s with those classes.
+:::
+::::
+```
+
+#### Previous and Next Items in Collections (for Prev/Next Page Links)
+
+I adopted the practice of putting links to previous and next blog posts at the bottom of each blog post when I moved to Jekyll. I'm not sure how much that feature is actually used on my site, but it was easy to implement in Jekyll.
+
+In the template file(s) you could get the entire collection, then find the one you are currently working with (by comparing IDs/slugs), and then move to the items before and after that in the collection. But there's a better way of handling it, since you build out the collection in your configuration file anyway:
+
+``` js{5,10}
+config.addCollection('posts', collection => collection
+    .getFilteredByGlob('./src/posts/**/*')
+    // ... (do things like filter and/or reverse here if you want)
+    .map((cur, i, all) => {
+        cur.data['siblings'] = {
+            'next': all[i - 1],
+            'prev': all[i + 1],
+        };
+        return cur;
+    })
+);
+```
+
+That simply adds the previous and next items from the collection into a `siblings` property on the page, so you can reference them in a template:
+
+``` js
+{% if siblings.prev.url or siblings.next.url %}
+<nav>
+    <ul>
+        <li>
+        	{% if siblings.prev.url %}
+            <a href="{{ siblings.prev.url | url }}" title="{{ siblings.prev.data.title }}">Previous Post</a>
+        	{% else %}
+            <span>No Previous Post</span>
+        	{% endif %}
+        </li>
+        <li>
+        	{% if siblings.next.url %}
+            <a href="{{ siblings.next.url | url }}" title="{{ siblings.next.data.title }}">Next Post</a>
+        	{% else %}
+            <span>>No Next Post</span>
+        	{% endif %}
+        </li>
+    </ul>
+</nav>
+{% endif %}
+```
+
+## What I Would Consider Doing Differently
+
+If I were to migrate another site from Jekyll to Eleventy, after having done this one, I'm not really sure if I would do anything differently **if my goal was to keep the same look and feel**. The biggest hurdle I had was converting templates, but, like I mentioned, even if I had stuck with Liquid (instead of switching to Nunjucks), my templates would need to be updated for the new data structure that Eleventy provides for page and collection data.
+
+However, if I was going to re-make the site (i.e. create a new "theme" and/or drastically change/reorganize content), then I think I would [find a starter project](https://www.11ty.dev/docs/starter/ "Eleventy Starter Projects") that better matched my needs, rather than doing it mostly from scratch.
+
+## What I Might Do Next
+
+I will probably write a follow-up blog post in another year or two, since [that's what happened when I migrated to Jekyll](/blog/2019/03/09/migrating-to-jekyll-part-2 "Blog Post: Migrating to Jekyll (Part 2)"). Or maybe I will finally start blogging more consistently.
+
+One thing that seems really interesting to me right now (while both the Eleventy and the Jekyll sites are "active") would be to make a standalone repository just for site content, and then maybe use [git submodules](https://github.blog/2016-02-01-working-with-submodules/ "GitHub's Blog Post on Using Submodules") to automatically propagate that content to both sites (which would probably require hooks and/or build commands). As cool (and probably over-complicated) as that sounds, though, I'm not sure it is very practical, since I don't foresee keeping **both** versions of the site live for very long.
+
+I am thinking about dropping Bootstrap and switching to [Tailwind](https://tailwindcss.com/ "Tailwind CSS Official Site"), as I have mostly switched to Tailwind for other projects anyway. I'm not sure if I would keep the same theme, though, or if I would completely redesign the site. I rarely get to design websites anymore, and most of the web apps I build for clients intentionally use Material Design, so I haven't really scratched that creative design itch for a long time now.
+
+Or maybe I will convert this to [Gatsby](https://www.gatsbyjs.org/ "GatsbyJS Official Site") or [Next.js](https://nextjs.org/ "Next.JS Official Site"), and then write a blog post or two about _that_.
