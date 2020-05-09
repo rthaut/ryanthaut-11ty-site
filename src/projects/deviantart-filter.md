@@ -1,10 +1,10 @@
 ---
 title: DeviantArt Filter
 excerpt: This browser extension allows configurable filtering/removal of deviations
-  by user, tag, and/or category on DeviantArt.
+  by user, keyword, and/or category on DeviantArt.
 comments: true
 weight: 2
-website: https://www.deviantart.com/rthaut/art/DeviantArt-Filter-v5-1-0-414321293
+website: https://rthaut.github.io/deviantART-Filter/
 repository:
   type: GitHub
   url: https://github.com/rthaut/deviantART-Filter
@@ -13,7 +13,6 @@ featured: true
 image:
   full: https://raw.githubusercontent.com/rthaut/deviantART-Filter/master/screenshots/Promo.png
   title: Promotional Screenshot for DeviantArt Filter Browser Extension
-  thumb: ''
 links:
 - url: https://chrome.google.com/webstore/detail/deviantart-filter/odlmamilbohnpnoomjclomghphbajikp
   title: Get Chrome Extension
@@ -32,9 +31,8 @@ Have you ever want to block/filter deviations (a.k.a. submissions) while browsin
 ### Features
 
 * Fully-featured management panel for maintaining your filters and controlling functionality.
-* Choose to either hide filtered deviations completely or show a customizable placeholder in their place.
 * Quickly filter a user in a single click from any of their deviation thumbnails.
-* Filter deviations by tags (with wildcard support).
+* Filter deviations by keywords in titles and/or tags (with wildcard support).
 * Filter all deviations from specific categories.
 * Import and export filter lists for easy backup and migration.
 
