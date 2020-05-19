@@ -11,7 +11,7 @@ repository:
   icon: fab fa-github
 featured: true
 image:
-  full: https://raw.githubusercontent.com/rthaut/deviantART-Filter/master/screenshots/Promo.png
+  full: https://raw.githubusercontent.com/rthaut/deviantART-Filter/master/promo/Screenshot_1280x800.png
   title: Promotional Screenshot for DeviantArt Filter Browser Extension
 links:
 - url: https://chrome.google.com/webstore/detail/deviantart-filter/odlmamilbohnpnoomjclomghphbajikp
@@ -26,12 +26,12 @@ links:
 ---
 ## Overview
 
-Have you ever want to block/filter deviations (a.k.a. submissions) while browsing [DeviantArt](https://www.deviantart.com)? **Well now you can!** Simply install DeviantArt Filter for your web browser of choice and start filtering by user, tag, and/or category.
+Have you ever want to block/filter deviations (a.k.a. submissions) while browsing DeviantArt? **Well now you can!** Simply [install DeviantArt Filter](#installation) in your web browser of choice and start filtering by user, keyword, and/or category.
 
 ### Features
 
 * Fully-featured management panel for maintaining your filters and controlling functionality.
-* Quickly filter a user in a single click from any of their deviation thumbnails.
+* Quickly create filters from any deviation thumbnail or link.
 * Filter deviations by keywords in titles and/or tags (with wildcard support).
 * Filter all deviations from specific categories.
 * Import and export filter lists for easy backup and migration.
