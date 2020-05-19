@@ -4,14 +4,14 @@ excerpt: This browser extension allows configurable filtering/removal of deviati
   by user, keyword, and/or category on DeviantArt.
 comments: true
 weight: 2
-website: https://rthaut.github.io/deviantART-Filter/
+website: https://rthaut.github.io/DeviantArt-Filter/
 repository:
   type: GitHub
-  url: https://github.com/rthaut/deviantART-Filter
+  url: https://github.com/rthaut/DeviantArt-Filter
   icon: fab fa-github
 featured: true
 image:
-  full: https://raw.githubusercontent.com/rthaut/deviantART-Filter/master/promo/Screenshot_1280x800.png
+  full: https://raw.githubusercontent.com/rthaut/DeviantArt-Filter/master/promo/Screenshot_1280x800.png
   title: Promotional Screenshot for DeviantArt Filter Browser Extension
 links:
 - url: https://chrome.google.com/webstore/detail/deviantart-filter/odlmamilbohnpnoomjclomghphbajikp
@@ -40,10 +40,10 @@ Have you ever want to block/filter deviations (a.k.a. submissions) while browsin
 
 ## Installation
 
-| Web Browser | Information | Download Link | Documentation |
-| ----------- | ----------- | ------------- | ------------- |
-| Google Chrome | [![Chrome Web Store][chrome-image-version]][chrome-url] [![Chrome Web Store][chrome-image-download]][chrome-url] | [Download from the Chrome Web Store][chrome-url] | [README for Chrome](https://github.com/rthaut/deviantART-Filter/blob/master/docs/chrome/README.md#readme) |
-| Mozilla Firefox | [![Mozilla Add-on][firefox-image-version]][firefox-url] [![Mozilla Add-on][firefox-image-download]][firefox-url] | [Download from Mozilla Add-ons][firefox-url] | [README for Firefox](https://github.com/rthaut/deviantART-Filter/blob/master/docs/firefox/README.md#readme) |
+| Web Browser | Information | Download Link |
+| ----------- | ----------- | ------------- |
+| Google Chrome | [![Chrome Web Store][chrome-image-version]][chrome-url] [![Chrome Web Store][chrome-image-download]][chrome-url] | [Download from the Chrome Web Store][chrome-url] |
+| Mozilla Firefox | [![Mozilla Add-on][firefox-image-version]][firefox-url] [![Mozilla Add-on][firefox-image-download]][firefox-url] | [Download from Mozilla Add-ons][firefox-url] |
 { .table }
 
 [chrome-url]: https://chrome.google.com/webstore/detail/deviantart-filter/odlmamilbohnpnoomjclomghphbajikp
