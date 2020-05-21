@@ -1,6 +1,6 @@
 ---
 title: Redirecting GitHub Project Pages for Renamed Repositories
-date: 2020-05-21T02:00:39.016Z
+date: 2020-05-21T02:00:00.000Z
 excerpt: Most suggestions for handling redirects after renaming a GitHub repo
   are vastly insufficient. I found a much better solution.
 categories:
@@ -21,8 +21,8 @@ The suggestions you will find online are to create a `<username>.github.io` repo
 Here's an example of the process I used that **only partially worked**:
 
 1. I renamed the repository from `deviantART-Filter` to `DeviantArt-Filter`
-2. The Project Page URL was changed from https://rthaut.github.io/*deviantART*-Filter/ to https://rthaut.github.io/*DeviantArt*-Filter/
-3. I created the `deviantART-Filter/index.html` file in a new `rthaut.github.io` repository, coding it to redirect to https://rthaut.github.io/DeviantArt-Filter/
+2. The Project Page URL was changed from https[]()://rthaut.github.io/*deviantART*-Filter/ to https[]()://rthaut.github.io/*DeviantArt*-Filter/
+3. I created the `deviantART-Filter/index.html` file in a new `rthaut.github.io` repository and added a `<meta>` tag to redirect to https://rthaut.github.io/DeviantArt-Filter/
 4. Visiting [https://rthaut.github.io/deviantART-Filter/](https://rthaut.github.io/deviantART-Filter/) redirected correctly to [https://rthaut.github.io/DeviantArt-Filter/](https://rthaut.github.io/DeviantArt-Filter/) 👍
 5. **But visiting the latest release page on the old URL ([https://rthaut.github.io/deviantART-Filter/releases/v6.1.0/](https://rthaut.github.io/deviantART-Filter/releases/v6.1.0/)) showed a generic GitHub 404 page** 😲
 
