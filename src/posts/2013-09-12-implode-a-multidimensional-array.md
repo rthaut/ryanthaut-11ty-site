@@ -50,7 +50,8 @@ Imagine, if you will, that you had a sentence of three words, but each word had 
 | Position 1 | Position 2 | Position 3 |
 | ---------- | ---------- | ---------- |
 | man<br/>woman | likes | red<br/>green<br/>blue |
-{ .table .table-striped .table-bordered}
+
+{ .table .table-striped .table-bordered }
 
 Now imagine that your goal was to convert that into all possible 3 word sentence permutations like this:
 
@@ -62,7 +63,8 @@ Now imagine that your goal was to convert that into all possible 3 word sentence
 | woman | likes | red |
 | woman | likes | green |
 | woman | likes | blue |
-{ .table .table-striped .table-bordered}
+
+{ .table .table-striped .table-bordered }
 
 I realize that is a bit crazy, but hopefully it illustrates the point. It would obviously be easy to explode() the original string on the pipes to get array of length 3, and then you could explode() each of those 3 elements again (this time on the commas) to get a multidimensional array. However, it is much more complicated to take that multidimensional array and turn it into all possible combinations. Obviously we aren't looking for a solution specific to this example, but something that would work for any reasonable situation.
 
@@ -128,7 +130,8 @@ Unfortunately, the "step amount" cannot be the same for all of the positions bec
 | woman | likes | green |
 | woman | likes | blue |
 | woman |likes | blue |
-{ .table .table-striped .table-bordered}
+
+{ .table .table-striped .table-bordered }
 
 Since you went through the first option in steps of 3, you can't just go through the last word in steps of 2 (at least not linearly). To solve for this, we have to factor the position into our step amount calculation.
 
