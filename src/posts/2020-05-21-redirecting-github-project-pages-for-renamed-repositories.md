@@ -8,7 +8,6 @@ categories:
 tags:
   - GitHub
   - web development
-  - ""
 ---
 I have recently finished a complete rewrite of my [DeviantArt Filter extension](/projects/deviantart-filter/), as deviantart.com was moving to an entirely new front-end. During the course of the rewrite, I realized the extension probably needed a proper site for documenting features, listing changes, etc.; prior to this, I just had a massive `README.md` in the [GitHub repository](https://github.com/rthaut/DeviantArt-Filter) that contained everything. I setup a Project Page for the repo (served out of the `/docs` directory), and things were great.
 
