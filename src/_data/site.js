@@ -4,7 +4,7 @@ module.exports = {
   url: "https://ryan.thaut.me",
   timezone: "America/Denver",
   lang: "en_US",
-  google_analytics: "UA-101995178-1",
+  google_analytics: "G-H4EZVDGRBM",
   google_site_verification: "QOW4UR1VAk3AzpIt6sO7PEI-ru-AyLhhioima0WmCZA",
   disqus_shortname: "ryanthaut",
   disqus_developer: 0,
