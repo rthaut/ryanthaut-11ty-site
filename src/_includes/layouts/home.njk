@@ -22,7 +22,7 @@ layout: layouts/base.njk
                 </li>
                 {% for social in socials | selectattr('featured') %}
                 <li class="h5 list-inline-item mx-2">
-                    <a href="{{ social.url }}" class="align-middle text-light">
+                    <a href="{{ social.url }}" rel="me" class="align-middle text-light">
                         <i class="fab fa-{{ social.icon | default(social.name) | lower }} fa-lg fa-fw m-1" aria-hidden="true"></i>{{ social.name }}
                     </a>
                 </li>

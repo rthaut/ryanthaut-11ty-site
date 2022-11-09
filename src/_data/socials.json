@@ -24,6 +24,14 @@
         "description": "Just FYI: I probably won't \"add you to my professional network\" unless you actually write your own message in the request."
     },
     {
+        "name": "Mastodon",
+        "icon": "mastodon",
+        "username": "@rthaut",
+        "url": "https://mas.to/@rthaut",
+        "featured": false,
+        "description": "Reserving my place on a new social network that isn't built around corporate profits. Hopefully it takes off."
+    },
+    {
         "name": "DeviantArt",
         "icon": "deviantart",
         "username": "rthaut",

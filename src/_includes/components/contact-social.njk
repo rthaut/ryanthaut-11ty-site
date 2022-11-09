@@ -4,14 +4,14 @@
 
 <dl>
 {% for social in socials | selectattr('featured') %}
-<dt class="h4"><i class="fab fa-{{ social.icon | default(social.name) | lower }} fa-lg fa-fw" aria-hidden="true"></i> {{ social.name }}: <a href="{{ social.url }}">{{ social.username }}</a></dt>
+<dt class="h4"><i class="fab fa-{{ social.icon | default(social.name) | lower }} fa-lg fa-fw" aria-hidden="true"></i> {{ social.name }}: <a href="{{ social.url }}" rel="me">{{ social.username }}</a></dt>
 <dd>{{ social.description | markdownify | safe }}</dd>
 {% endfor %}
 </dl>
 
 <dl class="mt-5">
 {% for social in socials | rejectattr('featured') %}
-<dt class="h5"><i class="fab fa-{{ social.icon | default(social.name) | lower }} fa-1x fa-fw" aria-hidden="true"></i> {{ social.name }}: <a href="{{ social.url }}">{{ social.username }}</a></dt>
+<dt class="h5"><i class="fab fa-{{ social.icon | default(social.name) | lower }} fa-1x fa-fw" aria-hidden="true"></i> {{ social.name }}: <a href="{{ social.url }}" rel="me">{{ social.username }}</a></dt>
 <dd class="small">{{ social.description | markdownify | safe }}</dd>
 {% endfor %}
 </dl>
