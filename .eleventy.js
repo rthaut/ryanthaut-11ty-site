@@ -114,7 +114,7 @@ module.exports = function (config) {
     config.addNunjucksFilter('markdownify', str => md.render(str));
 
     config.addFilter('jsonify', variable => JSON.stringify(variable));
-    
+
     config.addFilter('slugify', str => require('slugify')(str, {
         lower: true,
         replacement: '-',
@@ -124,7 +124,7 @@ module.exports = function (config) {
     config.addFilter('where', (array, key, value) => array.filter(item => {
         const keys = key.split('.');
         const reducedKey = keys.reduce((object, key) => object[key], item);
-    
+
         return (reducedKey === value ? item : false);
     }));
 
@@ -136,7 +136,7 @@ module.exports = function (config) {
         callbacks: {
             ready: (_err, browserSync) => {
                 const content_404 = fs.readFileSync('dist/404.html');
-    
+
                 browserSync.addMiddleware('*', (_req, res) => {
                     // render the 404 content instead of redirecting
                     res.write(content_404);
@@ -146,9 +146,9 @@ module.exports = function (config) {
         }
     });
 
-    
+
     return {
-        templateFormats: ['html', 'liquid', 'md', 'njk'],
+        templateFormats: ['html', 'njk', 'liquid', 'md',],
 
         pathPrefix: '/',
 
