@@ -62,4 +62,4 @@ Next, I loop through all configured redirects and test the current URL against t
 
 Finally, I write out a basic message to the page and use `window.location.replace()` to simulate a redirect (as opposed to a page change).
 
-[^1]: This strategy *only* captures missing pages/URLs on your GitHub Pages subdomain, so the idea is that any **broken** links to https://`<username>`.github.io/... can be reasonably redirected to `<username>`'s GitHub profile page.
+[^1]: This strategy *only* captures missing pages/URLs on your GitHub Pages subdomain, so the idea is that any **broken** links to https://*\<username\>*.github.io/... can be reasonably redirected to *username*'s GitHub profile page.
