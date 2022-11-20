@@ -1,4 +1,5 @@
-<meta charset='utf-8'>
+
+<meta charset="utf-8">
 <title>
 {%- if title -%}
     {{ title }} | {{ site.title }}
@@ -8,45 +9,49 @@
     {{ site.title }} {{ site.strapline }}
 {%- endif -%}
 </title>
-<meta name="description" content="{% block description %}{{site.description}}{% endblock %}">
-<meta name="robots" content="index,follow">
-<meta name="generator" content="Eleventy">
+<meta name="description" content="{% block description %}{{site.description}}{% endblock %}" />
+<meta name="robots" content="index,follow" />
+<meta name="generator" content="Eleventy" />
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  gtag("js", new Date());
 
-  gtag('config', '{{ site.google_analytics }}');
+  gtag("config", "{{ site.google_analytics }}");
 </script>
 
-
-{% block seo %}
+{%- block seo %}
 <!--Twitter Card-->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@{{ site.author.twitter }}">
-<meta name="twitter:creator" content="@{{ site.author.twitter }}">
-<meta name="twitter:url" content="{{ page.url | url }}">
-<meta name="twitter:title" content="{{ title }}">
-<meta name="twitter:description" content="{{ site.description }}">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@{{ site.author.twitter }}" />
+<meta name="twitter:creator" content="@{{ site.author.twitter }}" />
+<meta name="twitter:url" content="{{ page.url | url }}" />
+<meta name="twitter:title" content="{{ title }}" />
+<meta name="twitter:description" content="{{ site.description }}" />
 
 <!--Schema-->
-<link rel="author" href="{{ '/' | url }}">
-<link rel="publisher" href="{{ '/' | url }}">
-<meta itemprop="name" content="{{ title }}">
-<meta itemprop="description" content="{{ site.description }}">
-{% endblock %}
+<link rel="author" href="{{ '/' | url }}" />
+<link rel="publisher" href="{{ '/' | url }}" />
+<meta itemprop="name" content="{{ title }}" />
+<meta itemprop="description" content="{{ site.description }}" />
 
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<!--Socials-->
+{% for social in socials -%}
+<link rel="me" href="{{ social.url }}" />
+{% endfor -%}
+{% endblock -%}
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha256-PZLhE6wwMbg4AB3d35ZdBF9HD/dI/y4RazA3iRDurss=" crossorigin="anonymous" />
 
-<link rel='stylesheet' href="{{ '/assets/css/style.css' | url }}">
+<link rel='stylesheet' href="{{ '/assets/css/style.css' | url }}" />
 
 <!-- Netlify Identity Widget -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
